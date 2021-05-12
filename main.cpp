@@ -3,7 +3,7 @@
 * main.cpp
 *
 * Created on: April 26th, 2021
-*     Author: Uður Önal
+*     Author: Uï¿½ur ï¿½nal
 *             150518288
 */
 
@@ -72,8 +72,8 @@ void PrintInformationMenu(Merchant& merchant, Faction& orcs, Faction& dwarves, F
 	cout << "Your choice: ";
 	cin >> choice;
 
-	if (choice != 5) {
-		bool transactionSuccessful = false;
+	bool actionEnded = false;
+	if (!actionEnded) {
 		// Regarding player's choice calls a faction's or all three faction's Print() method
 		switch (choice) {
 		case 1:
@@ -81,17 +81,24 @@ void PrintInformationMenu(Merchant& merchant, Faction& orcs, Faction& dwarves, F
 			orcs.Print();
 			cout << endl << "Press any key to continue." << endl;
 			WaitForKeyPress();
+
+			actionEnded = true;
 			break;
 		case 2:
 			cout << endl << "-------------DWARVES-------------" << endl;
 			dwarves.Print();
 			cout << endl << "Press any key to continue." << endl;
 			WaitForKeyPress();
+
+			actionEnded = true;
+			break;
 		case 3:
 			cout << endl << "--------------ELVES--------------" << endl;
 			elves.Print();
 			cout << endl << "Press any key to continue." << endl;
 			WaitForKeyPress();
+
+			actionEnded = true;
 			break;
 		case 4:
 			cout << endl << "--------------ORCS---------------" << endl;
@@ -102,10 +109,17 @@ void PrintInformationMenu(Merchant& merchant, Faction& orcs, Faction& dwarves, F
 			elves.Print();
 			cout << endl << "Press any key to continue." << endl;
 			WaitForKeyPress();
+
+			actionEnded = true;
+			break;
+		case 5:
+			actionEnded = true;
 			break;
 		default:
 			cout << "Please enter a valid choice: ";
 			cin >> choice;
+
+			actionEnded = false;
 			break;
 		}
 	}
@@ -124,7 +138,7 @@ void SellWeaponMenu(Merchant& merchant) {
 	cin >> choice;
 
 	bool transactionSuccessful = false;
-	while (!transactionSuccessful && choice != 4) {
+	while (!transactionSuccessful) {
 		// Regarding player's choice calls a merchant's SellWeapons() method. Keep in mind of method parameters
 		switch (choice) {
 		case 1:
@@ -133,10 +147,10 @@ void SellWeaponMenu(Merchant& merchant) {
 
 				int weaponPoints;
 				cout << "Available weapon points for today: " << merchant.GetWeaponPoints() << endl;
-				cout << "Enter weapon points you want to sell: ";
+				cout << "Enter weapon points you want to sell (To cancel enter 0): ";
 				cin >> weaponPoints;
 
-				transactionSuccessful = merchant.SellWeapons("Orcs", weaponPoints);
+				transactionSuccessful = weaponPoints == 0 ? true : merchant.SellWeapons("Orcs", weaponPoints);
 			}
 			break;
 		case 2:
@@ -145,10 +159,10 @@ void SellWeaponMenu(Merchant& merchant) {
 
 				int weaponPoints;
 				cout << "Available weapon points for today: " << merchant.GetWeaponPoints() << endl;
-				cout << "Enter weapon points you want to sell: ";
+				cout << "Enter weapon points you want to sell (To cancel enter 0): ";
 				cin >> weaponPoints;
 
-				transactionSuccessful = merchant.SellWeapons("Dwarves", weaponPoints);
+				transactionSuccessful = weaponPoints == 0 ? true : merchant.SellWeapons("Dwarves", weaponPoints);
 			}
 			break;
 		case 3:
@@ -157,15 +171,20 @@ void SellWeaponMenu(Merchant& merchant) {
 
 				int weaponPoints;
 				cout << "Available weapon points for today: " << merchant.GetWeaponPoints() << endl;
-				cout << "Enter weapon points you want to sell: ";
+				cout << "Enter weapon points you want to sell (To cancel enter 0): ";
 				cin >> weaponPoints;
 
-				transactionSuccessful = merchant.SellWeapons("Elves", weaponPoints);
+				transactionSuccessful = weaponPoints == 0 ? true : merchant.SellWeapons("Elves", weaponPoints);
 			}
+			break;
+		case 4:
+			transactionSuccessful = true;
 			break;
 		default:
 			cout << "Please enter a valid choice: ";
 			cin >> choice;
+
+			transactionSuccessful = false;
 			break;
 		}
 	}
@@ -187,7 +206,7 @@ void SellArmorMenu(Merchant& merchant) {
 	cin >> choice;
 
 	bool transactionSuccessful = false;
-	while (!transactionSuccessful && choice != 4) {
+	while (!transactionSuccessful) {
 		// Regarding player's choice calls a merchant's SellWeapons() method. Keep in mind of method parameters
 		switch (choice) {
 		case 1:
@@ -196,10 +215,10 @@ void SellArmorMenu(Merchant& merchant) {
 
 				int armorPoints;
 				cout << "Available armor points for today: " << merchant.GetArmorPoints() << endl;
-				cout << "Enter armor points you want to sell: ";
+				cout << "Enter armor points you want to sell (To cancel enter 0): ";
 				cin >> armorPoints;
 
-				transactionSuccessful = merchant.SellArmors("Orcs", armorPoints);
+				transactionSuccessful = armorPoints == 0 ? true : merchant.SellArmors("Orcs", armorPoints);
 			}
 			break;
 		case 2:
@@ -208,10 +227,10 @@ void SellArmorMenu(Merchant& merchant) {
 
 				int armorPoints;
 				cout << "Available armor points for today: " << merchant.GetArmorPoints() << endl;
-				cout << "Enter armor points you want to sell: ";
+				cout << "Enter armor points you want to sell (To cancel enter 0): ";
 				cin >> armorPoints;
 
-				transactionSuccessful = merchant.SellArmors("Dwarves", armorPoints);
+				transactionSuccessful = armorPoints == 0 ? true : merchant.SellArmors("Dwarves", armorPoints);
 			}
 			break;
 		case 3:
@@ -220,15 +239,20 @@ void SellArmorMenu(Merchant& merchant) {
 
 				int armorPoints;
 				cout << "Available armor points for today: " << merchant.GetArmorPoints() << endl;
-				cout << "Enter armor points you want to sell: ";
+				cout << "Enter armor points you want to sell (To cancel enter 0): ";
 				cin >> armorPoints;
 
-				transactionSuccessful = merchant.SellArmors("Elves", armorPoints);
+				transactionSuccessful = armorPoints == 0 ? true : merchant.SellArmors("Elves", armorPoints);
 			}
+			break;
+		case 4:
+			transactionSuccessful = true;
 			break;
 		default:
 			cout << "Please enter a valid choice: ";
 			cin >> choice;
+
+			transactionSuccessful = false;
 			break;
 		}
 	}
@@ -238,55 +262,84 @@ void SellArmorMenu(Merchant& merchant) {
 }
 
 // Method to perform an action player had chosen from PrintMenu() method
-void PerformAction(int& day, int& numOfFactionsAlive, Merchant& merchant, Faction& orcs, Faction& dwarves, Faction& elves, int& action) {
-	switch (action) {
-	case 1:
-		PrintInformationMenu(merchant, orcs, dwarves, elves);
-		break;
-	case 2:
-		SellWeaponMenu(merchant);
-		break;
-	case 3:
-		SellArmorMenu(merchant);
-		break;
-	case 4:
-		// If player chose "End Turn" action
-		// Merchant ends his turn
-		merchant.EndTurn();
+void PerformAction(int& day, int& numOfFactionsAlive, bool& playAgain, bool& gameContinue, Merchant& merchant, Faction& orcs, Faction& dwarves, Faction& elves, int& action) {
+	bool actionEnded = false;
+	while (!actionEnded) {
+		switch (action) {
+		case 1:
+			PrintInformationMenu(merchant, orcs, dwarves, elves);
 
-		// If factions are alive they perform their attack with PerformAttack() method
-		if (orcs.IsAlive()) orcs.PerformAttack();
-		if (dwarves.IsAlive()) dwarves.PerformAttack();
-		if (elves.IsAlive()) elves.PerformAttack();
+			actionEnded = true;
+			break;
+		case 2:
+			SellWeaponMenu(merchant);
 
-		// If factions are alive they end their turn and update their status with ther EndTurn() method
-		if (orcs.IsAlive()) orcs.EndTurn();
-		if (dwarves.IsAlive()) dwarves.EndTurn();
-		if (elves.IsAlive()) elves.EndTurn();
+			actionEnded = true;
+			break;
+		case 3:
+			SellArmorMenu(merchant);
 
-		// Updates the number of factions alive to control if the game is ended
-		numOfFactionsAlive = 0;
-		if (orcs.IsAlive()) numOfFactionsAlive++;
-		if (dwarves.IsAlive()) numOfFactionsAlive++;
-		if (elves.IsAlive()) numOfFactionsAlive++;
+			actionEnded = true;
+			break;
+		case 4:
+			// If player chose "End Turn" action
+			// Merchant ends his turn
+			merchant.EndTurn();
 
-		// Prints current status of the battlefield
-		PrintBattlefieldStats(day, merchant, orcs, dwarves, elves);
+			// If factions are alive they perform their attack with PerformAttack() method
+			if (orcs.IsAlive()) orcs.PerformAttack();
+			if (dwarves.IsAlive()) dwarves.PerformAttack();
+			if (elves.IsAlive()) elves.PerformAttack();
 
-		// Increments the day
-		day++;
-		break;
-	default:
-		cout << "Please enter a valid choice: ";
-		cin >> action;
-		break;
+			// If factions are alive they end their turn and update their status with ther EndTurn() method
+			if (orcs.IsAlive()) orcs.EndTurn();
+			if (dwarves.IsAlive()) dwarves.EndTurn();
+			if (elves.IsAlive()) elves.EndTurn();
+
+			// Updates the number of factions alive to control if the game is ended
+			numOfFactionsAlive = 0;
+			if (orcs.IsAlive()) numOfFactionsAlive++;
+			if (dwarves.IsAlive()) numOfFactionsAlive++;
+			if (elves.IsAlive()) numOfFactionsAlive++;
+
+			// Prints current status of the battlefield
+			PrintBattlefieldStats(day, merchant, orcs, dwarves, elves);
+
+			// Increments the day
+			day++;
+
+			actionEnded = true;
+			break;
+		case 5: // If player chose to end the game print battlefield status and end the game
+			PrintBattlefieldStats(day, merchant, orcs, dwarves, elves);
+			cout << endl << "Game ended!";
+			gameContinue = false;
+
+			actionEnded = true;
+			break;
+		case 6: // If player chose to quit the game print battlefield status and quit the game
+			PrintBattlefieldStats(day, merchant, orcs, dwarves, elves);
+			cout << endl << "Thank you for playing!";
+			playAgain = false;
+
+			actionEnded = true;
+			break;
+		default:
+			cout << "Please enter a valid choice: ";
+			cin >> action;
+
+			actionEnded = false;
+			break;
+		}
 	}
 }
 
 int main() {
 	cout << "--------THE WARMONGER: A NEW DIMENSION--------" << endl;
-	bool play = true;
+	bool playAgain = true;
 	do {
+		bool gameContinue = true;
+
 		// Initializing each warring faction with their own constructor
 		// They will behave like Faction(name, numOfUnits, attackPoint, healthPoint, unitRegen)
 		Orcs orcs("Orcs", 40, 20, 200, 10);
@@ -312,27 +365,17 @@ int main() {
 
 		day++;
 		int action = 0;
-		while (play && action != 5 && numOfFactionsAlive > 1) {
+		while (playAgain && gameContinue && numOfFactionsAlive > 1) {
 			// Print the menu after each action
 			PrintMenu(day, merchant);
 			cin >> action;
-			switch (action) {
-			case 5: // If player chose to end the game print battlefield status and end the game
-				PrintBattlefieldStats(day, merchant, orcs, dwarves, elves);
-				cout << endl << "Game ended!";
-				break;
-			case 6: // If player chose to quit the game print battlefield status and quit the game
-				PrintBattlefieldStats(day, merchant, orcs, dwarves, elves);
-				cout << endl << "Thank you for playing!";
-				play = false;
-				break;
-			default: // Otherwise, perform the action player chose
-				PerformAction(day, numOfFactionsAlive, merchant, orcs, dwarves, elves, action);
-			}
+			PerformAction(day, numOfFactionsAlive, playAgain, gameContinue, merchant, orcs, dwarves, elves, action);
 		}
 
 		// If only one faction left and game ended print the winning faction's status
 		if (numOfFactionsAlive == 1) {
+			gameContinue = false;
+
 			if (orcs.IsAlive()) {
 				cout << endl << "----Orcs have won the war.----" << endl;
 				orcs.Print();
@@ -353,17 +396,17 @@ int main() {
 		cout << endl << day << " days have passed." << endl;
 		cout << merchant.GetRevenue() << " golds earned." << endl;
 
-		if (play) { // Check if player wants to play the game again
+		if (playAgain && !gameContinue) { // Check if player wants to play the game again
 			int replay;
-			cout << endl << "If you want to play again, press \"1\". Else, press \"0\": ";
+			cout << endl << "If you want to play again, enter \"1\". Else, enter \"0\": ";
 			cin >> replay;
 
 			if (replay != 1) {
-				play = false;
+				playAgain = false;
 			}
 		}
 
-	} while (play);
+	} while (playAgain);
 
 	return 0;
 }

@@ -2,7 +2,7 @@
 
 #include "Faction.h"
 
-class Elves : Faction{
+class Elves : public Faction{
     public: 
     Elves(string,int,int,int,int);
     void PerformAttack();

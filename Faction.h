@@ -1,6 +1,6 @@
 #pragma once
 #include <string>
-
+using namespace std;
 class Faction{
     string name;
     Faction* first_enemy;
@@ -16,8 +16,8 @@ class Faction{
     void AssignEnemies(Faction*, Faction*);
     virtual void PerformAttack() = 0;
     virtual void ReceiveAttack(int , int , char) = 0;
-    virtual void PurchaseWeapons() = 0;
-    virtual void PurchaseArmors() = 0;
+    virtual int PurchaseWeapons(int) = 0;
+    virtual int PurchaseArmors(int) = 0;
     virtual void Print();
     void EndTurn();
 
@@ -28,7 +28,7 @@ class Faction{
     int getAttackPoint(){return attack_point;}
     int getHealthPoint(){return health_point;}
     int getNumberUnit(){return number_of_unit;}
-    bool getAlive(){return alive;}
+    bool IsAlive(){return alive;}
 
     // setters
     void setNumberUnit(int number) {number_of_unit = number;}

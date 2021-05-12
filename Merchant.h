@@ -12,7 +12,15 @@ class Merchant{
     int armor_point;
     public:
     Merchant(int = 0, int = 0);
-    void AssingFactions(Faction*, Faction* ,Faction*);
+    void AssignFactions(Faction*, Faction* ,Faction*);
+    bool SellWeapons(string, int);
+    bool SellArmors(string, int);
+    void EndTurn();
+    
+    // getters
+    int GetRevenue(){return revenue;}
+    int GetWeaponPoints(){return weapon_point;}
+    int GetArmorPoints(){return armor_point;}
 
 };
 

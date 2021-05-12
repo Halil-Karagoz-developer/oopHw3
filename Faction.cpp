@@ -22,7 +22,7 @@ void Faction ::  Print() {
     cout << "Attack Point:           " <<attack_point<<endl;
     cout << "Health Point:           " <<health_point<<endl;
     cout << "Unit Regen Number:      " <<unit_reg_number<<endl;
-    cout << "Total Faction Health:   " <<unit_reg_number<<endl;
+    cout << "Total Faction Health:   " <<tot_health<<endl;
 }
 
 

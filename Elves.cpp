@@ -7,7 +7,7 @@ Elves :: Elves(string inname,int inNumberUnits ,int inAttackpoint,int inHealth,i
 : Faction(inname,inNumberUnits,inAttackpoint,inHealth,inRegNumber){} 
 
 void Elves :: PerformAttack(){
-    if(this->getFirtsEn()->getAlive() & this->getSecEn()->getAlive()){
+    if(this->getFirtsEn()->IsAlive() & this->getSecEn()->IsAlive()){
         int dwarves = this->getNumberUnit() * 40 / 100;
         int orcs = this->getNumberUnit() * 60/100;
         int attack_point = this->getAttackPoint();
@@ -15,7 +15,7 @@ void Elves :: PerformAttack(){
         this->getFirtsEn()->getName() == "Dwarves" ? this->getFirtsEn()->ReceiveAttack(dwarves,attack_point *1.5,'E') : this->getSecEn()->ReceiveAttack(dwarves,attack_point*1.5,'E');
         this->getFirtsEn()->getName() == "Orcs" ? this->getFirtsEn()->ReceiveAttack(orcs,attack_point,'E') : this->getSecEn()->ReceiveAttack(orcs,attack_point,'E');
     }
-    else if(this->getFirtsEn()->getAlive()){
+    else if(this->getFirtsEn()->IsAlive()){
         int attack_p = this->getAttackPoint();
         if(this->getFirtsEn()->getName() == "Dwarves") 
             attack_p *=1.5;
@@ -52,7 +52,8 @@ int Elves:: PurchaseArmors(int how_many){
 }
 
 void Elves:: Print(){
-    Faction :: Print();
     cout << "“You cannot reach our elegance.”"<<endl;
+    Faction :: Print();
+    
 }
 

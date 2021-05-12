@@ -6,7 +6,7 @@ Dwarves :: Dwarves(string inname,int inNumberUnits ,int inAttackpoint,int inHeal
 : Faction(inname,inNumberUnits,inAttackpoint,inHealth,inRegNumber){} 
 
 void Dwarves ::PerformAttack(){
-    if(this->getFirtsEn()->getAlive() & this->getSecEn()->getAlive()){
+    if(this->getFirtsEn()->IsAlive() & this->getSecEn()->IsAlive()){
         int elves = this->getNumberUnit() * 50 / 100;
         int orcs = this->getNumberUnit() * 50/100;
         int attack_point = this->getAttackPoint();
@@ -14,7 +14,7 @@ void Dwarves ::PerformAttack(){
         this->getFirtsEn()->getName() == "Elves" ? this->getFirtsEn()->ReceiveAttack(elves,attack_point,'D') : this->getSecEn()->ReceiveAttack(elves,attack_point,'D');
         this->getFirtsEn()->getName() == "Orcs" ? this->getFirtsEn()->ReceiveAttack(orcs,attack_point,'D') : this->getSecEn()->ReceiveAttack(orcs,attack_point,'D');
     }
-    else if(this->getFirtsEn()->getAlive()){ this->getFirtsEn()->ReceiveAttack(this->getNumberUnit(),this->getAttackPoint(),'D');}
+    else if(this->getFirtsEn()->IsAlive()){ this->getFirtsEn()->ReceiveAttack(this->getNumberUnit(),this->getAttackPoint(),'D');}
     else {this->getSecEn()->ReceiveAttack(this->getNumberUnit(),this->getAttackPoint(),'D');}
 }
 
@@ -35,7 +35,7 @@ int Dwarves:: PurchaseArmors(int how_many){
 }
 
 void Dwarves:: Print(){
-    Faction :: Print();
     cout << "“Taste the power of our axes!”"<<endl;
+    Faction :: Print();
 }
 
