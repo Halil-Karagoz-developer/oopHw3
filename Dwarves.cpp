@@ -7,8 +7,8 @@ Dwarves :: Dwarves(string inname,int inNumberUnits ,int inAttackpoint,int inHeal
 
 void Dwarves ::PerformAttack(){
     if(this->getFirtsEn()->IsAlive() & this->getSecEn()->IsAlive()){
-        int elves = this->getNumberUnit() * 50 / 100;
-        int orcs = this->getNumberUnit() * 50/100;
+        int elves = this->getNumberUnit() * (50.0 / 100);
+        int orcs = this->getNumberUnit() * (50.0/100);
         int attack_point = this->getAttackPoint();
         
         this->getFirtsEn()->getName() == "Elves" ? this->getFirtsEn()->ReceiveAttack(elves,attack_point,'D') : this->getSecEn()->ReceiveAttack(elves,attack_point,'D');

@@ -31,12 +31,12 @@ void Elves :: PerformAttack(){
 
 void Elves :: ReceiveAttack(int unit_num,int attack_p,char f){
        if(f == 'O'){
-        int tot_damage = unit_num * attack_p * 5/4;
+        int tot_damage = unit_num * attack_p * (125.0/100);
         int lost = tot_damage / this->getHealthPoint();
         this->setNumberUnit(this->getNumberUnit() - lost);
     }
     else { // Dwarves
-        int tot_damage = unit_num * attack_p * 3/4;
+        int tot_damage = unit_num * attack_p * (75.0/100);
         int lost = tot_damage / this->getHealthPoint();
         this->setNumberUnit(this->getNumberUnit() - lost);
     }
