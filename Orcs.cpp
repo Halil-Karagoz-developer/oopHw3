@@ -8,8 +8,8 @@ Faction(inname,inNumberUnits,inAttackpoint,inHealth,inRegNumber){}
 
 void Orcs :: PerformAttack(){
     if(this->getFirtsEn()->IsAlive() & this->getSecEn()->IsAlive()){
-        int elves = this->getNumberUnit() * (70.0 / 100);
-        int dwarves = this->getNumberUnit() * (30.0/100);
+        int elves = this->getNumberUnit()  -  (this->getNumberUnit() * 30)/ 100;
+        int dwarves = this->getNumberUnit()  -  (this->getNumberUnit() * 70)/ 100;
         int attack_point = this->getAttackPoint();
         
         this->getFirtsEn()->getName() == "Elves" ? this->getFirtsEn()->ReceiveAttack(elves,attack_point,'O') : this->getSecEn()->ReceiveAttack(elves,attack_point,'O');
