@@ -8,11 +8,11 @@ Elves :: Elves(string inname,int inNumberUnits ,int inAttackpoint,int inHealth,i
 
 void Elves :: PerformAttack(){
     if(this->getFirtsEn()->IsAlive() && this->getSecEn()->IsAlive()){
-        int dwarves = this->getNumberUnit() -  (this->getNumberUnit() * 40) / 100;
-        int orcs = this->getNumberUnit() - (this->getNumberUnit() * 40) /100;
+        int orcs = this->getNumberUnit() * 60 / 100;
+        int dwarves = this->getNumberUnit() - orcs;
         int attack_point = this->getAttackPoint();
         
-        this->getFirtsEn()->getName() == "Dwarves" ? this->getFirtsEn()->ReceiveAttack(dwarves,attack_point *1.5,'E') : this->getSecEn()->ReceiveAttack(dwarves,attack_point*1.5,'E');
+        this->getFirtsEn()->getName() == "Dwarves" ? this->getFirtsEn()->ReceiveAttack(dwarves,attack_point *150 / 100,'E') : this->getSecEn()->ReceiveAttack(dwarves,attack_point*150 / 100,'E');
         this->getFirtsEn()->getName() == "Orcs" ? this->getFirtsEn()->ReceiveAttack(orcs,attack_point,'E') : this->getSecEn()->ReceiveAttack(orcs,attack_point,'E');
     }
     else if(this->getFirtsEn()->IsAlive()){
@@ -31,18 +31,18 @@ void Elves :: PerformAttack(){
 
 void Elves :: ReceiveAttack(int unit_num,int attack_p,char f){
        if(f == 'O'){
-        int tot_damage = unit_num * attack_p * (125.0/100);
+        int tot_damage = unit_num * attack_p *125/ 100 ;
         int lost = tot_damage / this->getHealthPoint();
         this->setNumberUnit(this->getNumberUnit() - lost);
     }
     else { // Dwarves
-        int tot_damage = unit_num * attack_p * (75.0/100);
+        int tot_damage = unit_num * attack_p *75 /100;
         int lost = tot_damage / this->getHealthPoint();
         this->setNumberUnit(this->getNumberUnit() - lost);
     }
 }
 int Elves::PurchaseWeapons(int how_many){
-    this->IncreaseHealth(how_many*2);
+    this->IncreaseAttack(how_many*2);
     return how_many* 15;
 }
 

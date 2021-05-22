@@ -27,13 +27,14 @@ void Faction ::  Print() {
 
 
 void Faction ::EndTurn(){
-    if(number_of_unit){
+    if(number_of_unit > 0){
         number_of_unit += unit_reg_number;
         tot_health = number_of_unit* health_point;
     }
     else {
         alive = false;
         number_of_unit = 0;
+        tot_health = 0;
     }
 }
 

@@ -8,8 +8,8 @@ Faction(inname,inNumberUnits,inAttackpoint,inHealth,inRegNumber){}
 
 void Orcs :: PerformAttack(){
     if(this->getFirtsEn()->IsAlive() & this->getSecEn()->IsAlive()){
-        int elves = this->getNumberUnit()  -  (this->getNumberUnit() * 30)/ 100;
-        int dwarves = this->getNumberUnit()  -  (this->getNumberUnit() * 70)/ 100;
+        int elves = this->getNumberUnit() * 70 / 100;
+        int dwarves = this->getNumberUnit()  - elves;
         int attack_point = this->getAttackPoint();
         
         this->getFirtsEn()->getName() == "Elves" ? this->getFirtsEn()->ReceiveAttack(elves,attack_point,'O') : this->getSecEn()->ReceiveAttack(elves,attack_point,'O');
@@ -21,12 +21,12 @@ void Orcs :: PerformAttack(){
 
 void Orcs ::ReceiveAttack(int unit_num,int attack_p,char f){
     if(f == 'E'){
-        int tot_damage = unit_num * attack_p * (75.0/100);
+        int tot_damage = unit_num * attack_p * 75/100;
         int lost = tot_damage / this->getHealthPoint();
         this->setNumberUnit(this->getNumberUnit() - lost);
     }
     else { // Dwarves
-        int tot_damage = unit_num * attack_p * (80.0/100);
+        int tot_damage = unit_num * attack_p * 80/100;
         int lost = tot_damage / this->getHealthPoint();
         this->setNumberUnit(this->getNumberUnit() - lost);
     }
